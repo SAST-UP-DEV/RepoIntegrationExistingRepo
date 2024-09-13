@@ -5,7 +5,7 @@
     "incrementalScan": true,
     "enableRemediation": true,
     "baseBranches": [],
-    "snippetSize": 12
+    "snippetSize": 14
   },
   "checkRunSettingsSAST": {
     "checkRunConclusionLevel": "failure",
