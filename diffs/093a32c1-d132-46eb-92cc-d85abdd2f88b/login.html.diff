@@ -38,13 +38,16 @@
  
              const currentURL = new URL(window.location.href);
              const urlParams = currentURL.searchParams;
-@@ -38,1 +38,1 @@
--            const currentLangParam = urlParams.get('lang') || defaultLocale;
-+              const currentLangParam = urlParams.get('lang') ? urlParams.get('lang').replace(/[^a-zA-Z0-9_-]/g, '') : defaultLocale;
+@@ -38,0 +38,1 @@
++              const sanitizedLangParam = currentLangParam.replace(/[^a-zA-Z0-9_-]/g, '');
+             const currentLangParam = urlParams.get('lang') || defaultLocale;
  
  
-             if (defaultLocale !== storedLocale && currentLangParam !== storedLocale) {
-               urlParams.set('lang', storedLocale);
+@@ -41,2 +42,2 @@
+-            if (defaultLocale !== storedLocale && currentLangParam !== storedLocale) {
+-              urlParams.set('lang', storedLocale);
++              if (defaultLocale !== storedLocale && sanitizedLangParam !== storedLocale) {
++                urlParams.set('lang', storedLocale);
                currentURL.search = urlParams.toString();
                window.location.href = currentURL.toString();
                return;
