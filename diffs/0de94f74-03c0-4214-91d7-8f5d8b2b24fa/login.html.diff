@@ -1,6 +1,3 @@
---- original
-+++ remediated
-@@ -0,0 +0,0 @@
  <!DOCTYPE html>
  <html th:lang="${#locale.language}" th:dir="#{language.direction}" th:data-language="${#locale.toString()}" xmlns:th="https://www.thymeleaf.org">
    <head>
@@ -38,12 +35,10 @@
  
              const currentURL = new URL(window.location.href);
              const urlParams = currentURL.searchParams;
-@@ -38,0 +38,1 @@
 +              const sanitizedLangParam = currentLangParam.replace(/[^a-zA-Z0-9_-]/g, '');
              const currentLangParam = urlParams.get('lang') || defaultLocale;
  
  
-@@ -41,2 +42,2 @@
 -            if (defaultLocale !== storedLocale && currentLangParam !== storedLocale) {
 -              urlParams.set('lang', storedLocale);
 +              if (defaultLocale !== storedLocale && sanitizedLangParam !== storedLocale) {
