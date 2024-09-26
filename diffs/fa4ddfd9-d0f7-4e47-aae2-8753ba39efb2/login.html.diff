@@ -1,6 +1,3 @@
---- original
-+++ remediated
-@@ -0,0 +0,0 @@
  <!DOCTYPE html>
  <html th:lang="${#locale.language}" th:dir="#{language.direction}" th:data-language="${#locale.toString()}" xmlns:th="https://www.thymeleaf.org">
    <head>
@@ -97,20 +94,16 @@
                const currentLang = document.documentElement.getAttribute('language');
                if (currentLang !== languageCode) {
                  console.log("currentLang", currentLang)
-@@ -97,0 +97,1 @@
 +                  const sanitizedLanguageCode = encodeURIComponent(languageCode);
                  console.log("languageCode", languageCode)
                  const currentUrl = window.location.href;
                  if (currentUrl.indexOf("?lang=") === -1 && currentUrl.indexOf("&lang=") === -1) {
-@@ -100,1 +101,1 @@
 -                  window.location.href = currentUrl + "?lang=" + languageCode;
 +                    window.location.href = currentUrl + "?lang=" + sanitizedLanguageCode;
                  } else if (currentUrl.indexOf("&lang=") !== -1 && currentUrl.indexOf("?lang=") === -1) {
-@@ -102,1 +103,1 @@
 -                  window.location.href = currentUrl.replace(/&lang=\w{2,}/, "&lang=" + languageCode);
 +                    window.location.href = currentUrl.replace(/&lang=\w{2,}/, "&lang=" + sanitizedLanguageCode);
                  } else {
-@@ -104,1 +105,1 @@
 -                  window.location.href = currentUrl.replace(/\?lang=\w{2,}/, "?lang=" + languageCode);
 +                    window.location.href = currentUrl.replace(/\?lang=\w{2,}/, "?lang=" + sanitizedLanguageCode);
                  }
