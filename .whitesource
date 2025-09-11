@@ -4,7 +4,7 @@
     "scanPullRequests": true,
     "incrementalScan": true,
     "enableRemediation": true,
-    "findingSuppressions": "requireApproval",
+    "findingSuppressions": "enabled",
     "baseBranches": [],
     "snippetSize": 14
   },
