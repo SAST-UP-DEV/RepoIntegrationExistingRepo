@@ -1,4 +1,4 @@
-+import io.jsonwebtoken.JwtException;
++import io.jsonwebtoken.security.SignatureException;
  @Controller
  @Slf4j
  @AssignmentHints({"crypto-hashing.hints.1", "crypto-hashing.hints.2"})
@@ -118,19 +118,15 @@
    public ResponseEntity<AttackResult> checkout(
        @RequestHeader(value = "Authorization", required = false) String token) {
      if (token == null) {
-+      if (!token.startsWith("Bearer ")) {
-+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-+      }
        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
      }
      try {
 -      Jwt jwt = Jwts.parser().setSigningKey(JWT_PASSWORD).parse(token.replace("Bearer ", ""));
-+      Jwt jwt;
-+      try {
-+        jwt = Jwts.parser().setSigningKey(JWT_PASSWORD).parse(token.replace("Bearer ", ""));
-+      } catch (JwtException e) {
-+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-+      }
++      Jwts.parser().setSigningKey(JWT_PASSWORD).parseClaimsJws(token.replace("Bearer ", ""));
++    } catch (SignatureException e) {
++      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
++    }
++    Jwt jwt = Jwts.parser().setSigningKey(JWT_PASSWORD).parse(token.replace("Bearer ", ""));
        Claims claims = (Claims) jwt.getBody();
        String user = (String) claims.get("user");
        if ("Tom".equals(user)) {
