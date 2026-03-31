@@ -14,7 +14,7 @@
   },
   "issueSettingsSAST": {
     "minSeverityLevel": "high",
-    "issueType": "repo"
+    "issueType": "finding"
   },
   "checkRunSettings": {
     "useMendCheckNames": true
