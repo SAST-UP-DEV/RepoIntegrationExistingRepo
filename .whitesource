@@ -6,7 +6,7 @@
     "enableRemediation": true,
     "findingSuppressions": "requireApproval",
     "baseBranches": [],
-    "snippetSize": 14
+    "snippetSize": 11
   },
   "checkRunSettingsSAST": {
     "checkRunConclusionLevel": "failure",
